@@ -1,19 +1,19 @@
-# Use Maven to build the JAR before running the application
-FROM maven:3.8.6-openjdk-17 AS build
+# Use official Maven image to build the application
+FROM maven:3.8.7-openjdk-17 AS build
 WORKDIR /app
 
-# Copy source code and build
+# Copy the source code and build the project
 COPY . .
 RUN mvn clean package -DskipTests
 
-# Use OpenJDK for running the application
+# Use lightweight OpenJDK to run the application
 FROM openjdk:17-jdk-slim
 WORKDIR /app
 
-# Copy built JAR from the build stage
-COPY --from=build /app/target/broadcast_server-0.0.1-SNAPSHOT.jar app.jar
+# Copy the JAR from the build stage
+COPY --from=build /app/target/*.jar app.jar
 
-# Expose the port
+# Expose port
 EXPOSE 8080
 
 # Run the application
