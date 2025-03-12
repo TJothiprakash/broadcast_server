@@ -1,0 +1,11 @@
+services:
+  - name: websocket-broadcast-server
+    type: web
+    env: docker
+    repo: https://github.com/TJothiprakash/broadcast_server.git
+    branch: main
+    plan: free
+    region: oregon
+    envVars:
+      - key: PORT
+        value: 8080
