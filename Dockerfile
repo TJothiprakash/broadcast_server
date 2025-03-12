@@ -5,10 +5,10 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy and build the application
-COPY target/*.jar app.jar
+COPY target/*.jar broadcast_server-0.0.1-SNAPSHOT.jar
 
 # Expose the port
 EXPOSE 8080
 
 # Run the application
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "broadcast_server-0.0.1-SNAPSHOT.jar"]
